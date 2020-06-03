@@ -24,12 +24,12 @@ const lorem = new LoremIpsum({
     connectionString: connectionString,
   });
   
-  // for(var i = 0; i < 100; i++){
-  //      pool.query(`INSERT INTO products (pimages,description,parts,vendor,brand) VALUES('{https://i.picsum.photos/id/${randomNum(1,500)}/350/350.jpg,https://i.picsum.photos/id/${randomNum(1,500)}/350/350.jpg,https://i.picsum.photos/id/${randomNum(1,500)}/350/350.jpg,https://i.picsum.photos/id/${randomNum(1,500)}/350/350.jpg}','${lorem.generateSentences(1)}','{${lorem.generateWords(1)},${lorem.generateWords(1)},${lorem.generateWords(1)}}','${lorem.generateWords(1)}', '${lorem.generateWords(1)}');`, (err, res) => {
-  //         if(err) console.log(err, 'error')
-  //         else console.log(res, 'result shown')
-  //     })
-  // }
+//   for(var i = 0; i < 90; i++){
+//        pool.query(`INSERT INTO sets (productRef) VALUES('{${randomNum(80,99)},${randomNum(80,99)},${randomNum(80,99)}}');`, (err, res) => {
+//           if(err) console.log(err, 'error')
+//           else console.log(res, 'result shown')
+//       })
+//   }
   
   // pool.query('CREATE TABLE products (productID SERIAL PRIMARY KEY, pimages varchar[], description text, parts varchar[], vendor text, brand text);', (err, res) => {
   //     if(err) console.log(err, 'error')
@@ -43,10 +43,10 @@ const lorem = new LoremIpsum({
   //       pool.end()
   //     })
   
-  // pool.query(`Select * from products`, (err, res) => {
-  //   if (err) console.log(err, "error");
-  //   else console.log(res.rows, "result shown");
-  //   pool.end();
-  // });
+//   pool.query(`Select * from sets`, (err, res) => {
+//     if (err) console.log(err, "error");
+//     else console.log(res.rows, "result shown");
+//     pool.end();
+//   });
 
   module.exports = pool

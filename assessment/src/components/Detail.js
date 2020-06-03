@@ -1,12 +1,31 @@
-import React from "react";
-import { Descriptions, Carousel, Card,Button } from "antd";
+import React, {useState,preventDefault} from "react";
+import { Descriptions, Carousel, Card, Button } from "antd";
 import Caro from "./Caro";
+import axios from "axios";
 
-function Detail(props) {
+function Detail (props) {
+    
+    function randomNum(min, max) {
+        // min and max included
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      }
+
+    let items = []
+
+    if(items &&  props.data.length) {
+      
+            axios.get(`http://localhost:1337/findSet/${randomNum(1,10)}`)
+            .then((res) => items = (res.data))
+            .catch((err) => console.log(err))
+        
+
+    }
+      
+  
   if (props.data.length) {
+
     return (
       <div>
-         
         <Descriptions title="Product Detail Page">
           <Descriptions.Item label="Product Title">
             {props.data[0].description}
@@ -16,6 +35,16 @@ function Detail(props) {
           </Descriptions.Item>
           <Descriptions.Item label="Brand">
             {props.data[0].brand}
+          </Descriptions.Item>
+    <Descriptions.Item label="Set">{items.length > 1 ? ('Product is not part of a set') : ('Products in this set:')}
+    {items.length ? (' '): items.map((item,key) => {
+        return item.description
+    })}
+    </Descriptions.Item>
+          <Descriptions.Item label="Parts">
+            {props.data[0].parts.map((part, key) => {
+              return <a>{part}&nbsp;</a>;
+            })}
           </Descriptions.Item>
           <Descriptions.Item label="images">
             {" "}
@@ -37,9 +66,13 @@ function Detail(props) {
             })}
           </Carousel>
         </Card>
-        <div style={{textAlign:'center'}}>
-
-        <Button onClick={props.handleEditPage} style={{backgroundColor:'red'}} >Edit Details</Button>
+        <div style={{ textAlign: "center" }}>
+          <Button
+            onClick={props.handleEditPage}
+            style={{ backgroundColor: "red" }}
+          >
+            Edit Details
+          </Button>
         </div>
       </div>
     );

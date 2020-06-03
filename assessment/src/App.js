@@ -1,5 +1,4 @@
 import React from 'react';
-import { Row } from 'antd';
 import './App.css';
 import axios from 'axios'
 import { useEffect,useState } from 'react';
@@ -11,28 +10,29 @@ const [data,setData] = useState([])
 const [one,setOne] = useState([])
 const [detail,setDetail] = useState(false)
 const [edit,setEdit] = useState(false)
+const [set,findSet] = useState(false)
 
 function handleEditPage () {
 setEdit(true)
 setDetail(false)
-console.log('heya')
+
 }
 
 function handleClick(data){
-  axios.get(`http://localhost:1337/getOne/${data.productid}`)
-  .then((res) => setOne(res.data))
-  .catch((err) => console.log(err))
-  setDetail(!detail)
+    axios.get(`http://localhost:1337/getOne/${data.productid}`)
+    .then((res) => setOne(res.data))
+    .catch((err) => console.log(err))
+    setDetail(!detail)
 }
   useEffect(() => {
     axios.get("http://localhost:1337/getAll")
     .then((res) => setData(res.data))
     .catch((err) => console.log(err))
-  },[])
+  },[edit])
 
   switch(true) {
     case detail: return <Detail data={one} handleEditPage={handleEditPage}/>;
-    case edit: return <Edit data={one}/>;
+    case edit: return <Edit setEdit={setEdit} data={one}/>;
    default: return (
     <Grid handleClick={handleClick} data={data} detail={detail} setDetail={setDetail}/>
   );

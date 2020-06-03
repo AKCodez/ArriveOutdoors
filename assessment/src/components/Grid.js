@@ -6,7 +6,7 @@ function Grid (props){
 return (
 <div className="App">
   <br/>
-<h1> POC Management System</h1>
+<h1> POC Product Management System</h1>
 <br />
 <br />
      <div className="site-card-wrapper">
